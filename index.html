@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI对话机器人</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 侧边栏切换按钮 -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+    </button>
+
+    <!-- 侧边栏 -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>历史对话</h3>
+            <button class="sidebar-close" id="sidebarClose">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="history-actions">
+                <button class="history-action-btn" id="clearHistoryBtn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                    </svg>
+                    清空历史
+                </button>
+            </div>
+            
+            <div class="history-list" id="historyList">
+                <!-- 历史对话列表将在这里动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 主聊天容器 -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>AI对话助手</h1>
+                    <div class="model-selector">
+                        <select id="modelSelector">
+                            <option value="deepseek-ai/DeepSeek-V3.2-Exp">DeepSeek-V3.2</option>
+                            <option value="zai-org/GLM-4.6">智谱GLM-4.6</option>
+                            <option value="Qwen/Qwen3-VL-32B-Instruct">千问Qwen3-VL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn" id="newChatBtn" title="新建对话">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
+                        新建
+                    </button>
+                    <button class="action-btn" id="clearChatBtn" title="清空对话">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                        清空
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    您好！我是AI助手，有什么可以帮您的吗？
+                </div>
+                <div class="message-time">
+                    {{current_time}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <textarea 
+                    id="messageInput" 
+                    placeholder="输入您的问题..." 
+                    rows="1"
+                    oninput="autoResize(this)"
+                ></textarea>
+                <button id="sendButton" onclick="sendMessage()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading" id="loading" style="display: none;">
+        <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <p>AI正在思考中...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
