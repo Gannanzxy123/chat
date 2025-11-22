@@ -1,6 +1,6 @@
 // API配置
 const API_URL = 'https://api.siliconflow.cn/v1/chat/completions';
-const API_KEY = 'sk-pfsonzdjohvrufdublobzcluvpahpmxommrlbcamjpckrnxi';
+const API_KEY = 'sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
 // 当前选择的模型
 let currentModel = 'deepseek-ai/DeepSeek-V3.2-Exp';
